@@ -148,6 +148,7 @@
     line-height: 24px;
     color: #e5e5e5;
     word-break: break-all;
+    white-space: pre-wrap;
 }
 
 .auto {
@@ -168,6 +169,11 @@ a:active {
     opacity: 0.2 !important;
 }
 
+.disabledLink {
+    pointer-events: none;
+    cursor: not-allowed; /* 可选，改变鼠标样式表示不可用 */
+}
+
 .appIcon {
     width: 64px;
     height: 64px;
@@ -182,6 +188,13 @@ a:active {
     /* margin-top: 4px; */
     font-size: 16px;
     font-weight: 600;
+}
+
+.company {
+    font-size: 12px;
+    font-weight: 400;
+    color: #f2e1b4;
+    margin-left: 8px;
 }
 
 .appTag {
@@ -236,8 +249,19 @@ a:active {
 .profession {
     font-size: 15px;
     font-weight: 400;
-    margin-left: 12px;
+    margin-left: 3px;
     margin-top: 6px;
     color: #f2e1b4;
+}
+
+select {
+    background-color: rgba(40, 40, 60, 0.6);
+    color: #f0f0f0;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0 0 8px 8px;
+    padding: 4px;
+    border: none;
+    cursor: pointer;
 }
 

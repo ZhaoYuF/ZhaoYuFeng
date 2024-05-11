@@ -4,14 +4,15 @@ import styles from './index.module.css'
 const resumeData = {
   name: '赵宇峰',
   profession: 'iOS/前端',
+  years: 8,
   sex: '男',
   born: '1994年8月',
   place: '金华.浦江',
   placeUrl: 'https://baike.baidu.com/item/%E6%B5%A6%E6%B1%9F%E5%8E%BF/8510791',
   university: '聊城大学',
   universityUrl: 'https://www.lcu.edu.cn/xxgk/ldjj/index.htm',
-  major: '信息计算科学',
-  hobby: '打篮球，骑自行车，陪家人打麻将',
+  major: '数学系信息计算科学',
+  hobby: '打篮球，公路车，陪家人打麻将',
   skill: '可独立开发iOS、Web前端、小程序，熟悉Objective-C、Swift、JavaScript、TypeScript、Dart语言，熟悉SwiftUI、Flutter、Vue、React框架，熟悉一些3D开发，如SceneKit、ARKit、Three.js，乐于学习新的东西。',
   experience: [
     {
@@ -39,172 +40,232 @@ const resumeData = {
     {
       id: '1',
       name: '小鹿导游',
+      company: '杭州麦扑',
       beigin: '2017.12',
       end: '2023.08',
+      sort: '202308',
+      type: '1',
       icon: '/app1.webp',
       tags: ['iOS', 'Swift'],
       link: 'https://apps.apple.com/cn/app/id1274907625',
-      description: '一款旅游App。1.通过地图上的自定义瓦片，给热门景区添加了手绘地图；2.给游客提供景区的游览线路和需付费的语音讲解功能。',
+      description: '公司主要运营的一款旅游App。\n1.通过地图上的自定义瓦片，给热门景区添加了手绘地图；\n2.给游客提供景区的游览线路和需付费的语音讲解功能；\n3.用户可录制游览线路进行上传；\n4.旅游攻略、电台等其他功能。',
+      technology: '语言：最初使用OC开发，在2021年用Swift重构项目；\n使用库：Alamofire、SwiftJSON、SDWebImage等；\n技术模块：Storyboard布局、支付、音频、地图、CoreData、多线程等；',
     },
     {
       id: '2',
       name: '景点导游',
+      company: '杭州麦扑',
       beigin: '2019.11',
       end: '2021.04',
+      sort: '202104',
+      type: '1',
       icon: '/app2.webp',
       tags: ['iOS', 'Swift', 'SwiftUI'],
       link: 'https://apps.apple.com/cn/app/id1492789139',
-      description: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      description: '给杭州旅游学院导游系开发的APP，提供给学生和老师教学使用。\n主要业务功能是：\n1.学生完成录制景区的语音讲解导览线路等作业；\n2.教师对学生的作业进行批改和推荐等',
+      technology: '主要采用SwiftUI结合Combine响应式开发，适配了深色模式。'
     },
     {
       id: '3',
       name: '数字游戏',
+      company: '个人',
       beigin: '2017.09',
       end: '2017.11',
+      sort: '201711',
+      type: '1',
       icon: '/app3.png',
       tags: ['iOS', '个人开发', '广告AdMob', '已下架'],
       link: '',
-      description: '',
-    },
-    {
-      id: '13',
-      name: '走读吴兴',
-      beigin: '2021.09',
-      end: '2021.12',
-      icon: '/app13.jpg',
-      tags: ['微信小程序'],
-      link: '/miniprogram/13.jpg',
-      description: '',
+      description: '个人开发的益智小游戏，包含数独、2048、算24。',
+      technology: '动画主要使用UIKit的基础动画，加了Google的Admob广告（收入几百美元）。',
     },
     {
       id: '7',
       name: '泰顺红色研学',
+      company: '杭州麦扑',
       beigin: '2023.04',
       end: '2023.07',
+      sort: '202307',
+      type: '2',
       icon: '/app7.jpg',
       tags: ['微信小程序', "学校教育"],
       link: '/miniprogram/7.jpg',
-      description: '',
+      description: '温州泰顺县共青团的微信小程序项目,给当地中小学内部使用。\n分学生端和教师端,学生完成景点打卡任务，教师进行批改。',
+      technology: '其中导览模块用Webview，由Vue3+TS实现，地图使用了高德地图，小程序端用JS,主要使用了Vant组件库。',
+    },
+    {
+      id: '13',
+      name: '走读吴兴',
+      company: '杭州麦扑',
+      beigin: '2021.09',
+      end: '2021.12',
+      sort: '202112',
+      type: '2',
+      icon: '/app13.jpg',
+      tags: ['微信小程序'],
+      link: '/miniprogram/13.jpg',
+      description: '湖州旅游局的微信小程序项目\n主要功能是地图导览、景点打卡、积分兑换等',
+      technology: 'Vant组件库，一些功能模块的动画用了canvas去实现',
     },
     {
       id: '17',
-      name: '杭州上城区导览亚运版',
-      beigin: '',
-      end: '',
+      name: '上城区导览亚运版',
+      company: '杭州麦扑',
+      beigin: '2023.06',
+      end: '2023.07',
+      sort: '202307',
+      type: '2',
       icon: '/app17.jpg',
       tags: ['Web', 'Vue3', '已下线'],
       link: '',
-      description: '',
+      description: '杭州亚运会期间的Web项目，主要功能是在地图上实现对上城区热门点位的导览和介绍。',
+      technology: '用Vue3和TS开发, 主要难点是实现类似AppStore上Today页面的转场动画。',
     },
     {
       id: '4',
       name: '畅游沈北',
+      company: '杭州麦扑',
       beigin: '2020.05',
       end: '2020.08',
+      sort: '202008',
+      type: '1',
       icon: '/app4.png',
       tags: ['iOS', 'Objective-C', '已下架'],
       link: 'https://www.duote.com/ios/606021.html',
-      description: '',
-    },
-    {
-      id: '5',
-      name: '漫游兰州',
-      beigin: '2019.02',
-      end: '2019.05',
-      icon: '/app5.jpg',
-      tags: ['iOS', 'Objective-C', '已下架'],
-      link: '',
-      description: '',
+      description: '沈阳市沈北分公司的项目。功能类似小鹿导游，主要UI风格不同，数据主要以沈北故宫景区为主。',
+      technology: 'Objective-C，主要开发内容在地图导览，和小鹿导游APP类似。',
     },
     {
       id: '6',
       name: '惠美生活',
+      company: '金华惠美',
       beigin: '2015.10',
       end: '2017.09',
+      sort: '201709',
+      type: '1',
       icon: '/app6.jpg',
       tags: ['iOS', '商城', '已下架'],
       link: 'http://www.downza.cn/iphone/198689.html',
-      description: '',
+      description: '电商APP。主要功能是货币充值、商品团购和线上到店支付。',
+      technology: 'Objective-C开发，使用三方库AFNetworking、SDWebImage、友盟、环信、支付宝等。',
+    },
+    {
+      id: '5',
+      name: '漫游兰州',
+      company: '杭州麦扑',
+      beigin: '2019.02',
+      end: '2019.05',
+      sort: '201905',
+      type: '1',
+      icon: '/app5.jpg',
+      tags: ['iOS', 'Objective-C', '已下架'],
+      link: '',
+      description: '手绘地图导览APP，功能类似小鹿导游。',
+      technology: 'Objective-C开发, 地图使用高德SDK。'
     },
     {
       id: '8',
       name: '碳富码',
+      company: '杭州麦扑',
       beigin: '2022.08',
       end: '2022.11',
+      sort: '202211',
+      type: '2',
       icon: '/app8.jpg',
       tags: ['微信小程序'],
       link: '/miniprogram/8.jpg',
-      description: '',
+      description: '钱塘区的一个低碳的小程序项目。\n主要功能：\n1.上传记录低碳的生活方式，可获取积分，积分可在商城抵扣；\n2.类似美团优选的商城模块；\n3.组团建群游玩；\n4.寻宝等等。',
     },
     {
       id: '11',
       name: '智游凤凰',
+      company: '杭州麦扑',
       beigin: '2021.12',
       end: '2022.03',
+      sort: '202203',
+      type: '2',
       icon: '/app11.jpg',
       tags: ['微信小程序'],
       link: '/miniprogram/11.jpg',
-      description: '',
+      description: '湖南凤凰古城项目，功能和碳富码小程序类似。',
     },
     {
       id: '9',
       name: '小红印',
+      company: '杭州麦扑',
       beigin: '2021.04',
       end: '2021.08',
+      sort: '202108',
+      type: '2',
       icon: '/app9.jpg',
       tags: ['微信小程序'],
       link: '/miniprogram/9.jpg',
-      description: '',
-    },
-    {
-      id: '15',
-      name: '敬亭山景区',
-      beigin: '2020.11',
-      end: '2021.01',
-      icon: '/app15.jpg',
-      tags: ['微信小程序'],
-      link: '/miniprogram/15.jpg',
-      description: '',
+      description: '红色长征相关景点的导览小程序，设置了一些打卡任务的玩法。',
     },
     {
       id: '12',
       name: '智游苏仙',
+      company: '杭州麦扑',
       beigin: '2020.06',
-      end: '2020.9',
+      end: '2020.09',
+      sort: '202009',
+      type: '2',
       icon: '/app12.jpg',
       tags: ['微信小程序'],
       link: '/miniprogram/12.jpg',
-      description: '',
+      description: '普通的景区导览小程序。',
+    },
+    {
+      id: '15',
+      name: '敬亭山景区',
+      company: '杭州麦扑',
+      beigin: '2020.11',
+      end: '2021.01',
+      sort: '202101',
+      type: '2',
+      icon: '/app15.jpg',
+      tags: ['微信小程序'],
+      link: '/miniprogram/15.jpg',
+      description: '敬亭山景区地图导览小程序，功能和其他类似，基本就是地图导览和景区信息展示。',
     },
     {
       id: '14',
       name: '清风之旅杭州上城',
+      company: '杭州麦扑',
       beigin: '2020.01',
       end: '2020.04',
+      sort: '202004',
+      type: '2',
       icon: '/app14.jpg',
       tags: ['微信小程序'],
       link: '/miniprogram/14.jpg',
-      description: '',
+      description: '上城区景区导览小程序。',
     },
     {
       id: '10',
       name: '长沙世界之窗导览',
+      company: '杭州麦扑',
       beigin: '2019.09',
       end: '2020.01',
+      sort: '202001',
+      type: '2',
       icon: '/app10.jpg',
       tags: ['微信小程序'],
       link: '/miniprogram/10.jpg',
-      description: '',
+      description: '普通的导览小程序。',
     },
     {
       id: '16',
       name: '曹娥江文旅一点通',
+      company: '杭州麦扑',
       beigin: '2019.07',
       end: '2019.09',
+      sort: '201909',
+      type: '2',
       icon: '/app16.jpg',
-      tags: [''],
+      tags: ['微信小程序'],
       link: '/miniprogram/16.jpg',
-      description: '',
+      description: '绍兴上虞区导览小程序',
     },
 
 
@@ -217,7 +278,11 @@ function Project({ project, show }) {
     <a href={project.link} target='_blank' className={styles.flex} style={{ textDecoration: 'none', pointerEvents: project.link ? 'auto' : 'none' }}>
       <img src={project.icon} className={styles.appIcon} style={{ alignSelf: 'flex-start' }} />
       <div className={styles.auto} style={{ margin: '0 10px' }}>
-        <div className={styles.appName}>{project.name}</div>
+        <div className={styles.flex}>
+          <div className={styles.appName}>{project.name}</div>
+          <div className={styles.company}>{project.company}</div>
+        </div>
+
         <div className={styles.flex} style={{ flexWrap: 'wrap' }}>
           {
             project.tags.map(tag => {
@@ -233,20 +298,25 @@ function Project({ project, show }) {
       <div className={styles.textM}>项目时间</div>
       <div className={`${styles.text}`} style={{ marginLeft: '40px' }}>{project.beigin}—{project.end}</div>
     </div>
-    <div className={styles.cell} style={{ marginTop: '16px' }}>
-      <div className={styles.textM} style={{ marginTop: '12px' }}>项目介绍</div>
-      <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.description }}></div>
-    </div>
+    {
+      project.description ?
+        <div className={styles.cell} style={{ marginTop: '16px' }}>
+          <div className={styles.textM} style={{ marginTop: '12px' }}>项目介绍</div>
+          <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.description }}></div>
+        </div> : ''
+    }
 
-    <div className={styles.cell} style={{ marginTop: '16px' }}>
+    {/* <div className={styles.cell} style={{ marginTop: '16px' }}>
       <div className={styles.textM} style={{ marginTop: '12px' }}>语言框架</div>
       <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.description }}></div>
-    </div>
-
-    <div className={styles.cell} style={{ marginTop: '16px' }}>
-      <div className={styles.textM} style={{ marginTop: '12px' }}>开发描述</div>
-      <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.description }}></div>
-    </div>
+    </div> */}
+    {
+      project.technology ?
+        <div className={styles.cell} style={{ marginTop: '16px' }}>
+          <div className={styles.textM} style={{ marginTop: '12px' }}>开发描述</div>
+          <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.technology }}></div>
+        </div> : ''
+    }
 
   </div>
 }
@@ -258,10 +328,24 @@ export default function Resume({
 }) {
   const resumeRef = useRef()
   const [disabled, setDisabled] = useState(false)
-  const [projectsColumn, setProjectsColumn] = useState(2)
+  const [projectsSort, setProjectsSort] = useState(0) // 0默认，1时间近， 2早，
+  const [projectsType, setProjectsType] = useState(0) // 0默认，1ios， 2web，
+  const [projectsColumn, setProjectsColumn] = useState(window.innerWidth < 720 ? 1 : 2)
   const [showAllProjects, setShowAllProjects] = useState(false)
   const projects = useMemo(() => {
-    const list = resumeData.projects
+    var list
+    if (projectsType == 0) {
+      list = [...resumeData.projects]
+    } else {
+      list = resumeData.projects.filter((p) => p.type == projectsType)
+    }
+    console.log(projectsSort);
+    if (projectsSort == 1) {
+      list.sort((a, b) => b.sort - a.sort)
+      console.log(list);
+    } else if (projectsSort == 2) {
+      list.sort((a, b) => a.sort - b.sort)
+    }
     if (projectsColumn == 1) {
       return [list]
     }
@@ -270,7 +354,15 @@ export default function Resume({
       res[i % 2].push(element)
     });
     return res
-  }, [projectsColumn])
+  }, [projectsColumn, projectsSort, projectsType])
+
+  const projectsSortChange = (e) => {
+    setProjectsSort(parseInt(e.target.value))
+  }
+
+  const projectsTypeChange = (e) => {
+    setProjectsType(parseInt(e.target.value))
+  }
 
   const showContent = () => {
     if (show) {
@@ -326,6 +418,7 @@ export default function Resume({
     }
   }, [disabled, show])
 
+
   // useEffect(() => {
   //   if(!show) {
   //     console.log("resumeRef blur");
@@ -343,17 +436,19 @@ export default function Resume({
 
         <div className={styles.section}>
           <div className={styles.flex}>
-          <div className={styles.title1}>{resumeData.name}</div>
-          <div className={styles.profession}>{resumeData.profession}</div>
+            <div className={styles.title1} style={{ marginRight: '12px' }}>{resumeData.name}</div>
+            <div className={styles.profession}>{resumeData.profession}</div>
+            <div className={styles.profession}>·</div>
+            <div className={styles.profession}>{resumeData.years}年</div>
           </div>
-          
+
           <div className={styles.divider}></div>
           <div className={styles.text}>
             <span>{resumeData.sex}</span>
             <span>，生于{resumeData.born}，</span>
-            <a href={resumeData.placeUrl} target='_blank'> {resumeData.place} </a>
+            <a disabled={true} href={resumeData.placeUrl} target='_blank' className={disabled ? styles.disabledLink : ''}> {resumeData.place} </a>
             ，本科，2016年毕业于
-            <a href={resumeData.universityUrl} target='_blank'> {resumeData.university} </a>
+            <a href={resumeData.universityUrl} target='_blank' className={disabled ? styles.disabledLink : ''}> {resumeData.university} </a>
             <span>{resumeData.major}专业，</span>
             <span>平时爱好{resumeData.hobby}。</span>
           </div>
@@ -371,7 +466,7 @@ export default function Resume({
               return <div className={styles.card} key={item.id}>
                 <div className={styles.cell} >
                   {
-                    item.companyUrl ? <a className={styles.textL} href={item.companyUrl} target='_blank'>{item.company}</a> : <div className={styles.textL}>{item.company}</div>
+                    item.companyUrl ? <a className={`${styles.textL} ${disabled ? styles.disabledLink : ''}`} href={item.companyUrl} target='_blank'>{item.company}</a> : <div className={styles.textL}>{item.company}</div>
                   }
                   <div className={styles.textS} style={{ marginLeft: '12px' }}>{item.begin}-{item.end}</div>
                 </div>
@@ -386,14 +481,32 @@ export default function Resume({
         </div>
 
         <div className={styles.section}>
-          <div className={styles.title2}>项目经历</div>
+          <div className={styles.flex}>
+            <div className={`${styles.title2} ${styles.auto}`}>项目经历</div>
+            <div>
+              {/* <label htmlFor="sort">排序</label> */}
+              <select id="sort" onChange={projectsSortChange}>
+                <option value="0">默认</option>
+                <option value="1">最近</option>
+                <option value="2">最早</option>
+              </select>
+            </div>
+            <div>
+              {/* <label htmlFor="type">类目</label> */}
+              <select id="type" onChange={projectsTypeChange}>
+                <option value="0">全部</option>
+                <option value="1">iOS</option>
+                <option value="2">前端</option>
+              </select>
+            </div>
+          </div>
           <div className={styles.projects}>
             {
               projects.map((list, column) => {
                 return <div className={styles.projectsColumn} key={column}>
                   {
                     list.map((project, i) => {
-                      return <Project project={project} show={showAllProjects ? true : i < (6/projectsColumn)} key={project.id} />
+                      return <Project project={project} show={showAllProjects ? true : i < (6 / projectsColumn)} key={project.id} />
                     })
                   }
                 </div>
@@ -410,7 +523,12 @@ export default function Resume({
               })
             } */}
           </div>
-          <div className={styles.projectsSwitch} onClick={() => { setShowAllProjects(!showAllProjects) }}>{showAllProjects ? '收起' : '显示全部'}</div>
+          {
+            projectsType != 1 ?
+              <div className={styles.projectsSwitch} onClick={() => { setShowAllProjects(!showAllProjects) }}>{showAllProjects ? '收起' : '显示全部'}</div>
+              : ""
+          }
+
         </div>
 
         <div className={styles.section}>

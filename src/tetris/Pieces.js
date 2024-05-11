@@ -222,6 +222,9 @@ const eventData = {
     '13': { key: 0, action: 2 }, //回车
     //空格暂停
     '32': { key: 0, action: 3 },
+
+    '188': { key: 0, action: 4},
+    '190': { key: 1, action: 4},
 }
 
 // const currentChess = {

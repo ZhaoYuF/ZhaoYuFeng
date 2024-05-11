@@ -326,6 +326,10 @@ export default forwardRef(function Tetris({
                     }
                 }
                 return
+            } 
+            if  (action == 4) {
+                turnCamera(key == 0)
+                return
             }
             if (gameData.state != 1 || !gameData.running) return
             if (action == 0) {
@@ -375,7 +379,7 @@ export default forwardRef(function Tetris({
                 gameData.currentStep += 1
                 downCurrentCube()
             }
-        }
+        } 
         if (gameData.disabled) {
             const scrollTop = Math.max(0, resume.scrollTop - 50);
             const angle = scrollTop / 360.0 * Math.PI

@@ -9,7 +9,7 @@ const compressionOptions = {
   algorithm: 'gzip',
   ext: '.gz',
   threshold: 10240, // 只有大于此大小的文件会被压缩（单位：字节）
-  deleteOriginFile: false, // 是否删除原文件，默认为false
+  deleteOriginFile: true, // 是否删除原文件，默认为false
   verbose: false, // 是否显示详细日志
 }
 
