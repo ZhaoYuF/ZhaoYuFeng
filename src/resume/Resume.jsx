@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react'
 import styles from './index.module.css'
 
 const resumeData = {
@@ -7,7 +7,7 @@ const resumeData = {
   years: 8,
   sex: '男',
   born: '1994年8月',
-  place: '金华.浦江',
+  place: '浙江浦江',
   placeUrl: 'https://baike.baidu.com/item/%E6%B5%A6%E6%B1%9F%E5%8E%BF/8510791',
   university: '聊城大学',
   universityUrl: 'https://www.lcu.edu.cn/xxgk/ldjj/index.htm',
@@ -19,15 +19,17 @@ const resumeData = {
       id: '1',
       company: "杭州麦扑文化创意有限公司",
       companyUrl: "https://www.worldmaipu.com/",
-      address: "杭州.钱塘区",
+      address: "浙江杭州",
+      position: 'iOS开发',
       begin: "2017.11",
       end: '2024.03',
-      content: `<div>公司主营的APP<a target='_blank' href='https://apps.apple.com/cn/app/id1274907625'>小鹿导游</a>的iOS端的开发和迭代；</div><div>给各地旅游局或景区开发的APP的iOS端、微信小程序、部分H5的工作。</div><div>前几年以iOS端开发为主，后几年APP开发的需求减少，小程序开发的工作较多。</div>`,
+      content: `<div>公司主营的APP<a target='_blank' href='https://apps.apple.com/cn/app/id1274907625'>小鹿导游</a>的iOS端的开发和迭代；</div><div>给各地旅游局或景区开发的APP的iOS端、微信小程序、部分H5的工作。</div>`,
     },
     {
       id: '2',
       company: "惠美网络科技有限公司",
-      address: '金华义乌',
+      address: '浙江金华',
+      position: 'iOS开发',
       begin: "2015.9",
       end: '2017.10',
       content: "独立开发和迭代一个电商APP惠美商城的iOS端。",
@@ -267,13 +269,10 @@ const resumeData = {
       link: '/miniprogram/16.jpg',
       description: '绍兴上虞区导览小程序',
     },
-
-
-
   ]
 }
 
-function Project({ project, show }) {
+const Project = ({ project, show }) => {
   return <div className={`${show ? styles.card : styles.hiddenCard} ${styles.project}`}>
     <a href={project.link} target='_blank' className={styles.flex} style={{ textDecoration: 'none', pointerEvents: project.link ? 'auto' : 'none' }}>
       <img src={project.icon} className={styles.appIcon} style={{ alignSelf: 'flex-start' }} />
@@ -305,11 +304,6 @@ function Project({ project, show }) {
           <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.description }}></div>
         </div> : ''
     }
-
-    {/* <div className={styles.cell} style={{ marginTop: '16px' }}>
-      <div className={styles.textM} style={{ marginTop: '12px' }}>语言框架</div>
-      <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.description }}></div>
-    </div> */}
     {
       project.technology ?
         <div className={styles.cell} style={{ marginTop: '16px' }}>
@@ -321,50 +315,236 @@ function Project({ project, show }) {
   </div>
 }
 
+// function Project({ project, show }) {
+//   return <div className={`${show ? styles.card : styles.hiddenCard} ${styles.project}`}>
+//     <a href={project.link} target='_blank' className={styles.flex} style={{ textDecoration: 'none', pointerEvents: project.link ? 'auto' : 'none' }}>
+//       <img src={project.icon} className={styles.appIcon} style={{ alignSelf: 'flex-start' }} />
+//       <div className={styles.auto} style={{ margin: '0 10px' }}>
+//         <div className={styles.flex}>
+//           <div className={styles.appName}>{project.name}</div>
+//           <div className={styles.company}>{project.company}</div>
+//         </div>
+
+//         <div className={styles.flex} style={{ flexWrap: 'wrap' }}>
+//           {
+//             project.tags.map(tag => {
+//               return <div className={styles.appTag} key={tag}>{tag}</div>
+//             })
+//           }
+//         </div>
+//       </div>
+//       {project.link ? <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M283.648 174.081l57.225-59.008 399.479 396.929-399.476 396.924-57.228-59.004 335.872-337.92z" fill="#e6e6e6" p-id="4216" /></svg> : null}
+//     </a>
+//     <div className={styles.divider}></div>
+//     <div className={styles.cell} style={{ marginTop: '16px' }}>
+//       <div className={styles.textM}>项目时间</div>
+//       <div className={`${styles.text}`} style={{ marginLeft: '40px' }}>{project.beigin}—{project.end}</div>
+//     </div>
+//     {
+//       project.description ?
+//         <div className={styles.cell} style={{ marginTop: '16px' }}>
+//           <div className={styles.textM} style={{ marginTop: '12px' }}>项目介绍</div>
+//           <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.description }}></div>
+//         </div> : ''
+//     }
+//     {
+//       project.technology ?
+//         <div className={styles.cell} style={{ marginTop: '16px' }}>
+//           <div className={styles.textM} style={{ marginTop: '12px' }}>开发描述</div>
+//           <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.technology }}></div>
+//         </div> : ''
+//     }
+
+//   </div>
+// }
+
+const Intro = ({ disabled }) => {
+  return (
+    <div className={styles.section}>
+      <div className={styles.flex}>
+        <div className={styles.title1} style={{ marginRight: '12px' }}>{resumeData.name}</div>
+        <div className={styles.profession}>{resumeData.profession}</div>
+        <div className={styles.profession}>·</div>
+        <div className={styles.profession}>{resumeData.years}年</div>
+      </div>
+
+      <div className={styles.divider}></div>
+        <div className={`${styles.text} ${styles.lineInfo}`}>
+          <span>{resumeData.sex} ，{resumeData.born}，{resumeData.place}
+            ，本科，2016年毕业于
+            <a href={resumeData.universityUrl} target='_blank' className={disabled ? styles.disabledLink : ''}> {resumeData.university} </a>
+            {resumeData.major}专业。
+          </span>
+        </div>
+        <div className={`${styles.text} ${styles.lineInfo}`}>
+          <span>平时爱好{resumeData.hobby}。</span>
+        </div>
+    </div>
+  )
+}
+
+const Skill = () => {
+  return (
+    <div className={styles.section}>
+      <div className={styles.title2}>技能</div>
+      <div className={`${styles.text} ${styles.lineInfo}`}>可独立开发iOS项目，熟悉Objective-C、Swift，了解多线程、内存管理、runtime、SwiftUI等</div>
+      <div className={`${styles.text} ${styles.lineInfo}`}>会开发小程序和H5，熟悉JavaScript、TypeScript，了解Vue、React。</div>
+      <div className={`${styles.text} ${styles.lineInfo}`}>了解一些常用的三方库的使用，如AFNetworking、SDWebImage、Alamofire、SwiftyJSON、ElementUI、Vant等。</div>
+      <div className={`${styles.text} ${styles.lineInfo}`}>了解点3D开发，如SceneKit、ARKit、Three.js等。</div>
+    </div>
+  )
+}
+
+const Company = ({ disabled, item }) => {
+  return (
+    <div className={styles.card} key={item.id}>
+      <div className={styles.cell} style={{ padding: '12px 0 8px 0' }}>
+        {
+          item.companyUrl ? <a className={`${styles.textL} ${disabled ? styles.disabledLink : ''}`} href={item.companyUrl} target='_blank'>{item.company}</a> : <div className={styles.textL}>{item.company}</div>
+        }
+        {/* <div className={styles.textM} style={{ marginLeft: '12px', fontWeight: 400 }}>{item.begin} - {item.end}</div> */}
+      </div>
+      <div className={styles.cell} style={{ marginTop: '12px' }}>
+        <div className={styles.textM} style={{ marginTop: '12px', width: '60px' }}>时间</div>
+        <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }}>{item.begin} - {item.end}</div>
+      </div>
+      <div className={styles.cell} style={{ marginTop: '12px' }}>
+        <div className={styles.textM} style={{ marginTop: '12px', width: '60px' }}>工作地</div>
+        <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }}>{item.address}</div>
+      </div>
+      <div className={styles.cell} style={{ marginTop: '12px' }}>
+        <div className={styles.textM} style={{ marginTop: '12px', width: '60px' }}>职位</div>
+        <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }}>{item.position}</div>
+      </div>
+      <div className={styles.cell} style={{ marginTop: '12px' }}>
+        <div className={styles.textM} style={{ marginTop: '12px', width: '60px' }}>工作内容</div>
+        <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: item.content }}></div>
+      </div>
+    </div>
+  )
+}
+
+const Experience = ({ disabled }) => {
+  return (
+    <div className={styles.section}>
+      <div className={styles.title2}>工作经历</div>
+      <Company disabled={disabled} item={resumeData.experience[0]}></Company>
+      <Company disabled={false} item={resumeData.experience[1]}></Company>
+    </div>
+  )
+}
+
+const Contact = () => {
+  return (
+    <div className={styles.section}>
+      <div className={styles.title2}>联系方式</div>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }} >
+        <a href={`tel:${resumeData.phone}`} className={styles.card3}>
+          <svg viewBox="0 0 1024 1024" version="1.1" p-id="12177" width="20" height="20"><path d="M744.448 959.232h-4.693333c-107.434667-5.546667-252.586667-106.666667-388.266667-270.677333l-50.090667-60.586667C165.717333 464.213333 94.634667 304.042667 111.274667 199.68 122.88 126.122667 232.362667 64 294.826667 64c30.72 0 41.984 15.36 45.824 24.490667 35.413333 62.890667 79.189333 172.202667 79.36 211.456v2.730666l-0.938667 2.56c-7.850667 20.650667-25.258667 30.549333-40.704 39.253334-20.309333 11.52-31.829333 19.029333-33.28 40.704-0.341333 6.570667 5.290667 36.522667 94.805333 146.773333l38.314667 46.250667c89.770667 105.898667 117.930667 117.333333 124.586667 118.272 21.674667 2.986667 31.829333-6.485333 47.36-23.552 11.946667-12.970667 25.344-27.733333 47.530666-30.976l2.816-0.426667 2.730667 0.597333c39.082667 8.277333 139.093333 72.789333 195.925333 120.661334 8.192 5.376 22.528 21.589333 11.178667 57.258666-17.749333 56.064-95.232 139.178667-165.888 139.178667z" fill="#fff" p-id="12178" /></svg>
+          {/* <div className={styles.text} style={{ marginLeft: '8px' }}>{resumeData.phone}</div> */}
+        </a>
+        <a href={`mailto:${resumeData.email}`} className={styles.card3}>
+          <svg viewBox="0 0 1024 1024" version="1.1" p-id="12177" width="20" height="20"><path d="M149.6 171.8h691.9c47.2 0 85.9 37.7 86.5 83.9L495.7 493 63.5 256c0.4-46.4 38.8-84.2 86.1-84.2z m-86.1 175l-0.4 419.6c0 46.7 38.9 84.9 86.5 84.9h691.9c47.6 0 86.5-38.2 86.5-84.9V346.6L505.9 572.8c-6.5 3.5-14.3 3.5-20.7 0l-421.7-226z" fill="#fff" p-id="12178" /></svg>
+          {/* <div className={styles.text} style={{ marginLeft: '8px' }}>{resumeData.email}</div> */}
+        </a>
+        <a href='./wechat.jpg' target='_blank' className={styles.card3}>
+          <svg viewBox="0 0 1024 1024" version="1.1" p-id="12177" width="20" height="20"><path d="M693.12 347.264c11.776 0 23.36 0.896 35.008 2.176-31.36-146.048-187.456-254.528-365.696-254.528C163.2 94.912 0 230.656 0 403.136c0 99.52 54.272 181.248 145.024 244.736L108.8 756.864l126.72-63.488c45.312 8.896 81.664 18.112 126.912 18.112 11.392 0 22.656-0.512 33.792-1.344-7.04-24.256-11.2-49.6-11.2-76.032C385.088 475.776 521.024 347.264 693.12 347.264zM498.304 249.024c27.392 0 45.376 17.984 45.376 45.248 0 27.136-17.984 45.312-45.376 45.312-27.072 0-54.336-18.176-54.336-45.312C443.968 266.944 471.168 249.024 498.304 249.024zM244.672 339.584c-27.2 0-54.592-18.176-54.592-45.312 0-27.264 27.392-45.248 54.592-45.248S289.92 266.944 289.92 294.272C289.92 321.408 271.872 339.584 244.672 339.584zM1024 629.76c0-144.896-145.024-262.976-307.904-262.976-172.48 0-308.224 118.144-308.224 262.976 0 145.28 135.808 262.976 308.224 262.976 36.096 0 72.512-9.024 108.736-18.112l99.392 54.528-27.264-90.624C969.728 783.872 1024 711.488 1024 629.76zM616.128 584.384c-17.984 0-36.224-17.92-36.224-36.224 0-18.048 18.24-36.224 36.224-36.224 27.52 0 45.376 18.176 45.376 36.224C661.504 566.464 643.648 584.384 616.128 584.384zM815.488 584.384c-17.856 0-36.032-17.92-36.032-36.224 0-18.048 18.112-36.224 36.032-36.224 27.264 0 45.376 18.176 45.376 36.224C860.864 566.464 842.752 584.384 815.488 584.384z" fill="#fff" p-id="12178" /></svg>
+          {/* <div className={styles.text} style={{ marginLeft: '8px' }}>{resumeData.wechat}</div> */}
+        </a>
+      </div>
+    </div>
+  )
+}
+
+const ProjectItem = ({ project, setProject }) => {
+  const clickItem = () => {
+    setProject(project)
+  }
+  return (
+    <div className={`${styles.card} ${styles.projectItem}`} style={{cursor: "pointer"}}>
+      <a onClick={clickItem} className={styles.flex} style={{ textDecoration: 'none', pointerEvents: 'auto' }}>
+        <img src={project.icon} className={styles.appIcon} style={{ alignSelf: 'flex-start' }} />
+        <div className={styles.auto} style={{ margin: '0 10px' }}>
+          <div className={styles.flex}>
+            <div className={styles.appName}>{project.name}</div>
+            <div className={styles.company}>{project.company}</div>
+          </div>
+
+          <div className={styles.flex} style={{ flexWrap: 'wrap' }}>
+            {
+              project.tags.map(tag => {
+                return <div className={styles.appTag} key={tag}>{tag}</div>
+              })
+            }
+          </div>
+        </div>
+      </a>
+    </div>
+  )
+}
+
+const ProjectsList = ({setProject}) => {
+  return (
+    <div className={styles.section}>
+      <div className={styles.title2}>项目经历</div>
+      <div className={styles.projectsItems}>
+        {
+          resumeData.projects.map((project) => {
+            return <ProjectItem project={project} key={project.id} setProject={setProject}></ProjectItem>
+          })
+        }
+      </div>
+    </div>
+  )
+}
+
+
 export default function Resume({
   onResumeShow,
   onResumeHide,
   show,
 }) {
+
   const resumeRef = useRef()
   const [disabled, setDisabled] = useState(false)
-  const [projectsSort, setProjectsSort] = useState(0) // 0默认，1时间近， 2早，
-  const [projectsType, setProjectsType] = useState(0) // 0默认，1ios， 2web，
-  const [projectsColumn, setProjectsColumn] = useState(window.innerWidth < 720 ? 1 : 2)
-  const [showAllProjects, setShowAllProjects] = useState(false)
-  const projects = useMemo(() => {
-    var list
-    if (projectsType == 0) {
-      list = [...resumeData.projects]
-    } else {
-      list = resumeData.projects.filter((p) => p.type == projectsType)
-    }
-    console.log(projectsSort);
-    if (projectsSort == 1) {
-      list.sort((a, b) => b.sort - a.sort)
-      console.log(list);
-    } else if (projectsSort == 2) {
-      list.sort((a, b) => a.sort - b.sort)
-    }
-    if (projectsColumn == 1) {
-      return [list]
-    }
-    const res = [[], []]
-    list.forEach((element, i) => {
-      res[i % 2].push(element)
-    });
-    return res
-  }, [projectsColumn, projectsSort, projectsType])
+  
+  // const [projectsSort, setProjectsSort] = useState(0) // 0默认，1时间近， 2早，
+  // const [projectsType, setProjectsType] = useState(0) // 0默认，1ios， 2web，
+  // const [projectsColumn, setProjectsColumn] = useState(window.innerWidth < 720 ? 1 : 2)
+  // const [showAllProjects, setShowAllProjects] = useState(false)
+  // const projects = useMemo(() => {
+  //   var list
+  //   if (projectsType == 0) {
+  //     list = [...resumeData.projects]
+  //   } else {
+  //     list = resumeData.projects.filter((p) => p.type == projectsType)
+  //   }
+  //   console.log(projectsSort);
+  //   if (projectsSort == 1) {
+  //     list.sort((a, b) => b.sort - a.sort)
+  //     console.log(list);
+  //   } else if (projectsSort == 2) {
+  //     list.sort((a, b) => a.sort - b.sort)
+  //   }
+  //   if (projectsColumn == 1) {
+  //     return [list]
+  //   }
+  //   const res = [[], []]
+  //   list.forEach((element, i) => {
+  //     res[i % 2].push(element)
+  //   });
+  //   return res
+  // }, [projectsColumn, projectsSort, projectsType])
 
-  const projectsSortChange = (e) => {
-    setProjectsSort(parseInt(e.target.value))
-  }
+  // const projectsSortChange = (e) => {
+  //   setProjectsSort(parseInt(e.target.value))
+  // }
 
-  const projectsTypeChange = (e) => {
-    setProjectsType(parseInt(e.target.value))
-  }
+  // const projectsTypeChange = (e) => {
+  //   setProjectsType(parseInt(e.target.value))
+  // }
 
-  const showContent = () => {
+  const showContent = useCallback(() => {
     if (show) {
       if (resumeRef.current.scrollTop < 50) {
         resumeRef.current.scrollTop = 100
@@ -374,13 +554,13 @@ export default function Resume({
     } else {
       resumeRef.current.scrollTop = 0
     }
-  }
+  }, [])
 
-  const hideContent = () => {
+  const hideContent = useCallback(() => {
     setDisabled(true)
     onResumeHide()
     document.querySelector("#canvas").focus()
-  }
+  }, [])
 
   const onScroll = () => {
     if (resumeRef.current.scrollTop < 50) {
@@ -419,72 +599,33 @@ export default function Resume({
   }, [disabled, show])
 
 
-  // useEffect(() => {
-  //   if(!show) {
-  //     console.log("resumeRef blur");
-  //     resumeRef.current.blur()
-  //     setTimeout(() => {
-  //       document.querySelector("#canvas").focus()
-  //     }, 1000);
-  //   }
-  // }, [show])
+  useEffect(() => {
+    if (!show) {
+      resumeRef.current.blur()
+      setTimeout(() => {
+        document.querySelector("#canvas").focus()
+      }, 1000);
+    }
+  }, [show])
+
+  const [project, setProject] = useState(null)
+
   return (
     <div className={`${styles.container} ${disabled ? styles.disabledContainer : ''} ${show ? '' : styles.hideContainer}`} id='resume' ref={resumeRef}>
       <div className={styles.topSpace}></div>
       <div onClick={disabled && show ? showContent : null} className={`${styles.content} ${disabled ? styles.disabledContent : ''}`}>
 
+        <Intro disabled={disabled}></Intro>
 
-        <div className={styles.section}>
-          <div className={styles.flex}>
-            <div className={styles.title1} style={{ marginRight: '12px' }}>{resumeData.name}</div>
-            <div className={styles.profession}>{resumeData.profession}</div>
-            <div className={styles.profession}>·</div>
-            <div className={styles.profession}>{resumeData.years}年</div>
-          </div>
+        <Skill></Skill>
 
-          <div className={styles.divider}></div>
-          <div className={styles.text}>
-            <span>{resumeData.sex}</span>
-            <span>，生于{resumeData.born}，</span>
-            <a disabled={true} href={resumeData.placeUrl} target='_blank' className={disabled ? styles.disabledLink : ''}> {resumeData.place} </a>
-            ，本科，2016年毕业于
-            <a href={resumeData.universityUrl} target='_blank' className={disabled ? styles.disabledLink : ''}> {resumeData.university} </a>
-            <span>{resumeData.major}专业，</span>
-            <span>平时爱好{resumeData.hobby}。</span>
-          </div>
-        </div>
+        <Experience disabled={disabled}></Experience>
 
-        <div className={styles.section}>
-          <div className={styles.title2}>技能</div>
-          <div className={styles.text}>{resumeData.skill}</div>
-        </div>
 
-        <div className={styles.section}>
-          <div className={styles.title2}>工作经历</div>
-          {
-            resumeData.experience.map(item => {
-              return <div className={styles.card} key={item.id}>
-                <div className={styles.cell} >
-                  {
-                    item.companyUrl ? <a className={`${styles.textL} ${disabled ? styles.disabledLink : ''}`} href={item.companyUrl} target='_blank'>{item.company}</a> : <div className={styles.textL}>{item.company}</div>
-                  }
-                  <div className={styles.textS} style={{ marginLeft: '12px' }}>{item.begin}-{item.end}</div>
-                </div>
-                <div className={styles.cell} style={{ marginTop: '16px' }}>
-                  <div className={styles.textM} style={{ marginTop: '12px' }}>工作内容</div>
-                  <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: item.content }}></div>
-                </div>
-              </div>
-            })
-          }
-
-        </div>
-
-        <div className={styles.section}>
+        {/* <div className={styles.section}>
           <div className={styles.flex}>
             <div className={`${styles.title2} ${styles.auto}`}>项目经历</div>
             <div>
-              {/* <label htmlFor="sort">排序</label> */}
               <select id="sort" onChange={projectsSortChange}>
                 <option value="0">默认</option>
                 <option value="1">最近</option>
@@ -492,7 +633,6 @@ export default function Resume({
               </select>
             </div>
             <div>
-              {/* <label htmlFor="type">类目</label> */}
               <select id="type" onChange={projectsTypeChange}>
                 <option value="0">全部</option>
                 <option value="1">iOS</option>
@@ -500,28 +640,20 @@ export default function Resume({
               </select>
             </div>
           </div>
+
           <div className={styles.projects}>
             {
               projects.map((list, column) => {
-                return <div className={styles.projectsColumn} key={column}>
+                return <div className={styles.projectsColumn} key={"projects" + column}>
                   {
                     list.map((project, i) => {
-                      return <Project project={project} show={showAllProjects ? true : i < (6 / projectsColumn)} key={project.id} />
+                      return <Project project={project} show={showAllProjects ? true : i < (6 / projectsColumn)} key={"project" + project.id} />
                     })
                   }
                 </div>
               })
             }
-            {/* {
-              resumeData.projects.slice(0, 5).map((project) => {
-                return <Project project={project} show={true} key={project.id} />
-              })
-            }
-            {
-              resumeData.projects.slice(5).map((project) => {
-                return <Project project={project} show={showAllProjects} key={project.id}  />
-              })
-            } */}
+  
           </div>
           {
             projectsType != 1 ?
@@ -529,26 +661,15 @@ export default function Resume({
               : ""
           }
 
-        </div>
+        </div> */}
 
-        <div className={styles.section}>
-          <div className={styles.title2}>联系方式</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap' }} >
-            <a href={`tel:${resumeData.phone}`} className={styles.card3}>
-              <svg viewBox="0 0 1024 1024" version="1.1" p-id="12177" width="20" height="20"><path d="M744.448 959.232h-4.693333c-107.434667-5.546667-252.586667-106.666667-388.266667-270.677333l-50.090667-60.586667C165.717333 464.213333 94.634667 304.042667 111.274667 199.68 122.88 126.122667 232.362667 64 294.826667 64c30.72 0 41.984 15.36 45.824 24.490667 35.413333 62.890667 79.189333 172.202667 79.36 211.456v2.730666l-0.938667 2.56c-7.850667 20.650667-25.258667 30.549333-40.704 39.253334-20.309333 11.52-31.829333 19.029333-33.28 40.704-0.341333 6.570667 5.290667 36.522667 94.805333 146.773333l38.314667 46.250667c89.770667 105.898667 117.930667 117.333333 124.586667 118.272 21.674667 2.986667 31.829333-6.485333 47.36-23.552 11.946667-12.970667 25.344-27.733333 47.530666-30.976l2.816-0.426667 2.730667 0.597333c39.082667 8.277333 139.093333 72.789333 195.925333 120.661334 8.192 5.376 22.528 21.589333 11.178667 57.258666-17.749333 56.064-95.232 139.178667-165.888 139.178667z" fill="#fff" p-id="12178" /></svg>
-              <div className={styles.text} style={{ marginLeft: '8px' }}>{resumeData.phone}</div>
-            </a>
-            <a href={`mailto:${resumeData.email}`} className={styles.card3}>
-              <svg viewBox="0 0 1024 1024" version="1.1" p-id="12177" width="20" height="20"><path d="M149.6 171.8h691.9c47.2 0 85.9 37.7 86.5 83.9L495.7 493 63.5 256c0.4-46.4 38.8-84.2 86.1-84.2z m-86.1 175l-0.4 419.6c0 46.7 38.9 84.9 86.5 84.9h691.9c47.6 0 86.5-38.2 86.5-84.9V346.6L505.9 572.8c-6.5 3.5-14.3 3.5-20.7 0l-421.7-226z" fill="#fff" p-id="12178" /></svg>
-              <div className={styles.text} style={{ marginLeft: '8px' }}>{resumeData.email}</div>
-            </a>
-            <a href='./wechat.jpg' target='_blank' className={styles.card3}>
-              <svg viewBox="0 0 1024 1024" version="1.1" p-id="12177" width="20" height="20"><path d="M693.12 347.264c11.776 0 23.36 0.896 35.008 2.176-31.36-146.048-187.456-254.528-365.696-254.528C163.2 94.912 0 230.656 0 403.136c0 99.52 54.272 181.248 145.024 244.736L108.8 756.864l126.72-63.488c45.312 8.896 81.664 18.112 126.912 18.112 11.392 0 22.656-0.512 33.792-1.344-7.04-24.256-11.2-49.6-11.2-76.032C385.088 475.776 521.024 347.264 693.12 347.264zM498.304 249.024c27.392 0 45.376 17.984 45.376 45.248 0 27.136-17.984 45.312-45.376 45.312-27.072 0-54.336-18.176-54.336-45.312C443.968 266.944 471.168 249.024 498.304 249.024zM244.672 339.584c-27.2 0-54.592-18.176-54.592-45.312 0-27.264 27.392-45.248 54.592-45.248S289.92 266.944 289.92 294.272C289.92 321.408 271.872 339.584 244.672 339.584zM1024 629.76c0-144.896-145.024-262.976-307.904-262.976-172.48 0-308.224 118.144-308.224 262.976 0 145.28 135.808 262.976 308.224 262.976 36.096 0 72.512-9.024 108.736-18.112l99.392 54.528-27.264-90.624C969.728 783.872 1024 711.488 1024 629.76zM616.128 584.384c-17.984 0-36.224-17.92-36.224-36.224 0-18.048 18.24-36.224 36.224-36.224 27.52 0 45.376 18.176 45.376 36.224C661.504 566.464 643.648 584.384 616.128 584.384zM815.488 584.384c-17.856 0-36.032-17.92-36.032-36.224 0-18.048 18.112-36.224 36.032-36.224 27.264 0 45.376 18.176 45.376 36.224C860.864 566.464 842.752 584.384 815.488 584.384z" fill="#fff" p-id="12178" /></svg>
-              <div className={styles.text} style={{ marginLeft: '8px' }}>{resumeData.wechat}</div>
-            </a>
-          </div>
-        </div>
+        <ProjectsList setProject={setProject}></ProjectsList>
 
+        <Contact></Contact>
+
+        {
+          project ? <div>{project.name}{project.id}</div> : ""
+        }
 
       </div>
     </div>

@@ -1,8 +1,8 @@
-import { Canvas, useThree } from "@react-three/fiber"
+import { Canvas } from "@react-three/fiber"
 import Tetris from "../tetris/Tetris"
 import GameUI from "./GameUI"
 import { CameraControls } from '@react-three/drei'
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import audioContext from './audio.js'
 
 const GameCanvas = ({
@@ -14,10 +14,10 @@ const GameCanvas = ({
 }) => {
     return <Canvas
         // flat
-        shadows
+        // shadows
         // dpr={2}
         gl={{
-            antialias: true
+            antialias: false
             // toneMapping: THREE.LinearToneMapping,
             // outputColorSpace: THREE.LinearSRGBColorSpace
         }}
@@ -25,11 +25,11 @@ const GameCanvas = ({
         style={{ height: '100%' }}
         id="canvas"
     >
-        {/* <Sky sunPosition={[10, 10, 10]} /> */}
+        {/* <Sky sunPosition={[10, 10, 10]} />  ={gameState == 1} */}
         <CameraControls dollySpeed={0} onEnd={(e) => { e.target.reset(true) }} />
         <group rotation-x={0.15}>
-            <directionalLight position={[0, 20, 0]} intensity={1.8} castShadow />
-            <directionalLight position={[5, 5, 10]} intensity={0.5} />
+            {/* <directionalLight position={[0, 20, 0]} intensity={1.8} castShadow={false} /> */}
+            {/* <directionalLight position={[5, 5, 10]} intensity={0.5} /> */}
             <ambientLight intensity={0.8} />
             <Tetris onScore={(s) => { setScore(s) }} ref={tetris} gameState={gameState} onChangeGameState={onChangeGameState} disabled={disabled} />
         </group>
@@ -62,7 +62,7 @@ export default function Game({
     const onChangeGameState = (state) => {
         setGameState(state)
         if (state == 0) {
-            console.log("归零");
+            // console.log("归零");
             setScore(0)
         }
         if (state == 1) {
@@ -79,10 +79,10 @@ export default function Game({
     }, [disabled, gameState])
 
     if(!disabled && gameState != 1) {
-        console.log("播放");
+        // console.log("播放");
         audioContext.playBackgroundMusic()
     } else {
-        console.log("暂停");
+        // console.log("暂停");
         audioContext.pauseBackgroundMusic()
     }
 

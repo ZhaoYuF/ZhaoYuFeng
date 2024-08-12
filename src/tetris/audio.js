@@ -13,11 +13,11 @@ player.bg.loop = true
 
 const audioContext = {
     playBackgroundMusic: () => {
-        player.bg.play();
+        // player.bg.play();
     },
 
     pauseBackgroundMusic: () => {
-        player.bg.pause();
+        // player.bg.pause();
     },
 
     playMoveMusic: () => {

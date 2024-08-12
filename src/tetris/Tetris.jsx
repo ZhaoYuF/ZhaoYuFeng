@@ -405,7 +405,7 @@ export default forwardRef(function Tetris({
                             return row.map((item, z) => {
                                 if (item && item.valid) {
                                     return (
-                                        <RoundedBox radius={0.1} creaseAngle={1.0} smoothness={1} bevelSegments={1} key={`${x}-${y}-${z}`} args={[1, 1, 1]} position={[x, y, z]} receiveShadow>
+                                        <RoundedBox radius={0.1} creaseAngle={1.0} smoothness={1} bevelSegments={1} key={`${x}-${y}-${z}`} args={[1, 1, 1]} position={[x, y, z]} receiveShadow={false}>
                                             <meshStandardMaterial color={item.color} />
                                         </RoundedBox>
                                     )
@@ -417,7 +417,7 @@ export default forwardRef(function Tetris({
                 {
                     currentCube.positions.map(p => {
                         return (
-                            <RoundedBox radius={0.1} creaseAngle={1.0} smoothness={1} bevelSegments={1} key={`${p[0]}-${p[1]}-${p[2]}`} args={[1, 1, 1]} position={p} castShadow>
+                            <RoundedBox radius={0.1} creaseAngle={1.0} smoothness={1} bevelSegments={1} key={`${p[0]}-${p[1]}-${p[2]}`} args={[1, 1, 1]} position={p} castShadow={false}>
                                 <meshStandardMaterial color={currentCube.color} />
                             </RoundedBox>
                         )
@@ -435,7 +435,7 @@ export default forwardRef(function Tetris({
             </group>
             <group>
                 {/* 阴影 */}
-                <Plane args={[cols, rows]} receiveShadow rotation-x={-Math.PI * 0.5} position-y={0.11} >
+                <Plane args={[cols, rows]} receiveShadow={false} rotation-x={-Math.PI * 0.5} position-y={0.11} >
                     <shadowMaterial opacity={0.7} />
                 </Plane>
                 {/* 底 */}

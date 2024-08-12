@@ -95,6 +95,19 @@
 .flex {
     display: flex;
     align-items: center;
+    
+}
+
+.lineInfo {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    word-break: normal !important;
+}
+
+.lineInfo::before {
+    content: "·";
+    font-size: 20px;
 }
 
 .divider {
@@ -206,6 +219,22 @@ a:active {
     border-radius: 2px;
 }
 
+.projectsItems {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    /* background-color: red; */
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.projectItem {
+    margin-top: 6px;
+    margin: 6px !important;
+}
+
 .projects {
     display: flex;
     /* justify-content: space-between; */
@@ -263,5 +292,6 @@ select {
     padding: 4px;
     border: none;
     cursor: pointer;
+    /* color: #27a08a; */
 }
 
