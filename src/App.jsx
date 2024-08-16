@@ -1,4 +1,4 @@
-// import Game from './tetris/Game'
+import Game from './tetris/Game'
 import Resume from './resume/Resume'
 import { useState } from 'react'
 // import audioContext from './tetris/audio'
@@ -8,7 +8,7 @@ import { useState } from 'react'
 function App() {
   const [gameDisabled, setGameDisabled]  = useState(true)
   const [showResume, setShowResume] = useState(true)
-  // const [gameDisabled, setGameDisabled]  = useState(true)
+
   const onGameRunning = () => {
     setShowResume(false)
   }
@@ -18,7 +18,7 @@ function App() {
   }
   return (
     <>
-      {/* <Game disabled={gameDisabled} onGameRunning={onGameRunning} onGamePaused={onGamePaused}></Game> */}
+      <Game disabled={gameDisabled} onGameRunning={onGameRunning} onGamePaused={onGamePaused}></Game>
       <Resume show={showResume} onResumeHide={ () => {setGameDisabled(false)} } onResumeShow={ () => {setGameDisabled(true); setShowResume(true)} }></Resume>
     </>
   )

@@ -26,7 +26,12 @@ const audioContext = {
             player.move.volume = 1.0;
             player.move.loop = false;
         }
+        if(player.move.isPlaying) {
+            player.move.pause();
+        }
+        
         player.move.currentTime = 0;
+        player.move.load();
         player.move.play();
     },
 
@@ -36,7 +41,13 @@ const audioContext = {
             player.rotation.volume = 1;
             player.rotation.loop = false;
         }
+
+        if(player.rotation.isPlaying) {
+            player.rotation.pause();
+        }
+
         player.rotation.currentTime = 0;
+        player.rotation.load();
         player.rotation.play();
     },
 
@@ -46,7 +57,13 @@ const audioContext = {
             player.score.volume = 1;
             player.score.loop = false;
         }
+
+        if(player.score.isPlaying) {
+            player.score.pause();
+        }
+
         player.score.currentTime = 0;
+        player.score.load();
         player.score.play();
     },
 
@@ -56,7 +73,13 @@ const audioContext = {
             player.fail.volume = 1.0;
             player.fail.loop = false;
         }
+
+        if(player.fail.isPlaying) {
+            player.fail.pause();
+        }
+
         player.fail.currentTime = 0;
+        player.fail.load();
         player.fail.play();
     },
 }

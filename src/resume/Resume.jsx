@@ -65,7 +65,7 @@ const resumeData = {
       tags: ['iOS', 'Swift', 'SwiftUI'],
       link: 'https://apps.apple.com/cn/app/id1492789139',
       description: '给杭州旅游学院导游系开发的APP，提供给学生和老师教学使用。\n主要业务功能是：\n1.学生完成录制景区的语音讲解导览线路等作业；\n2.教师对学生的作业进行批改和推荐等',
-      technology: '主要采用SwiftUI结合Combine响应式开发，适配了深色模式。'
+      technology: '主要采用SwiftUI、Combine开发。'
     },
     {
       id: '3',
@@ -76,10 +76,52 @@ const resumeData = {
       sort: '201711',
       type: '1',
       icon: '/app3.png',
-      tags: ['iOS', '个人开发', '广告AdMob', '已下架'],
+      tags: ['iOS', '益智游戏'],
       link: '',
       description: '个人开发的益智小游戏，包含数独、2048、算24。',
-      technology: '动画主要使用UIKit的基础动画，加了Google的Admob广告（收入几百美元）。',
+      technology: '动画主要使用UIKit的基础动画，加了Google的Admob广告。现在APP已下架。',
+    },
+    {
+      id: '6',
+      name: '惠美生活',
+      company: '金华惠美',
+      beigin: '2015.10',
+      end: '2017.09',
+      sort: '201709',
+      type: '1',
+      icon: '/app6.jpg',
+      tags: ['iOS', '商城'],
+      // link: 'http://www.downza.cn/iphone/198689.html',
+      description: '电商APP。主要功能是货币充值、商品团购和线上到店支付。',
+      technology: 'Objective-C开发，使用三方库AFNetworking、SDWebImage、友盟、环信、支付宝等。',
+    },
+    {
+      id: '4',
+      name: '畅游沈北',
+      company: '杭州麦扑',
+      beigin: '2020.05',
+      end: '2020.08',
+      sort: '202008',
+      type: '1',
+      icon: '/app4.png',
+      tags: ['iOS', 'Objective-C'],
+      // link: 'https://www.duote.com/ios/606021.html',
+      description: '沈阳市沈北分公司的项目。功能类似小鹿导游，主要UI风格不同，数据主要以沈北故宫景区为主。',
+      technology: 'Objective-C，主要开发内容在地图导览，和小鹿导游APP类似。',
+    },
+    {
+      id: '5',
+      name: '漫游兰州',
+      company: '杭州麦扑',
+      beigin: '2019.02',
+      end: '2019.05',
+      sort: '201905',
+      type: '1',
+      icon: '/app5.jpg',
+      tags: ['iOS', 'Objective-C'],
+      link: '',
+      description: '手绘地图导览APP，功能类似小鹿导游。',
+      technology: 'Objective-C开发, 地图使用高德SDK。'
     },
     {
       id: '7',
@@ -118,52 +160,10 @@ const resumeData = {
       sort: '202307',
       type: '2',
       icon: '/app17.jpg',
-      tags: ['Web', 'Vue3', '已下线'],
+      tags: ['Web', 'Vue3'],
       link: '',
       description: '杭州亚运会期间的Web项目，主要功能是在地图上实现对上城区热门点位的导览和介绍。',
       technology: '用Vue3和TS开发, 主要难点是实现类似AppStore上Today页面的转场动画。',
-    },
-    {
-      id: '4',
-      name: '畅游沈北',
-      company: '杭州麦扑',
-      beigin: '2020.05',
-      end: '2020.08',
-      sort: '202008',
-      type: '1',
-      icon: '/app4.png',
-      tags: ['iOS', 'Objective-C', '已下架'],
-      link: 'https://www.duote.com/ios/606021.html',
-      description: '沈阳市沈北分公司的项目。功能类似小鹿导游，主要UI风格不同，数据主要以沈北故宫景区为主。',
-      technology: 'Objective-C，主要开发内容在地图导览，和小鹿导游APP类似。',
-    },
-    {
-      id: '6',
-      name: '惠美生活',
-      company: '金华惠美',
-      beigin: '2015.10',
-      end: '2017.09',
-      sort: '201709',
-      type: '1',
-      icon: '/app6.jpg',
-      tags: ['iOS', '商城', '已下架'],
-      link: 'http://www.downza.cn/iphone/198689.html',
-      description: '电商APP。主要功能是货币充值、商品团购和线上到店支付。',
-      technology: 'Objective-C开发，使用三方库AFNetworking、SDWebImage、友盟、环信、支付宝等。',
-    },
-    {
-      id: '5',
-      name: '漫游兰州',
-      company: '杭州麦扑',
-      beigin: '2019.02',
-      end: '2019.05',
-      sort: '201905',
-      type: '1',
-      icon: '/app5.jpg',
-      tags: ['iOS', 'Objective-C', '已下架'],
-      link: '',
-      description: '手绘地图导览APP，功能类似小鹿导游。',
-      technology: 'Objective-C开发, 地图使用高德SDK。'
     },
     {
       id: '8',
@@ -272,91 +272,67 @@ const resumeData = {
   ]
 }
 
-const Project = ({ project, show }) => {
-  return <div className={`${show ? styles.card : styles.hiddenCard} ${styles.project}`}>
-    <a href={project.link} target='_blank' className={styles.flex} style={{ textDecoration: 'none', pointerEvents: project.link ? 'auto' : 'none' }}>
-      <img src={project.icon} className={styles.appIcon} style={{ alignSelf: 'flex-start' }} />
-      <div className={styles.auto} style={{ margin: '0 10px' }}>
-        <div className={styles.flex}>
-          <div className={styles.appName}>{project.name}</div>
-          <div className={styles.company}>{project.company}</div>
-        </div>
+const ProjectDetail = ({ project, isHidden, hideenProject, rect }) => {
+  // const [lazyIsHidden, setLazyIsHidden] = useState(true)
+  const {width, height, left, top} = rect
+  const style = isHidden ? {
+    width: width + 'px',
+    maxHeight: height + 'px',
+    top: (top + height * 0.5) + 'px',
+    left: (left + width * 0.5) + 'px',
+  } : {}
+  const stopPropagation = (e) => {
+    e.stopPropagation()
+  }
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLazyIsHidden(isHidden)
+  //   }, 0);
+  // }, [isHidden])
+  return (
+    <div className={`${styles.projectDetail} ${isHidden ? styles.projectDetailHidden : styles.projectDetailShow}`} onClick={hideenProject}>
+      <div style={style} className={`${styles.card} ${styles.projectContent} ${isHidden ? styles.projectContentHidden : styles.projectContentShow}`} onClick={stopPropagation}>
+          <a href={project.link} target='_blank' className={styles.flex} style={{ textDecoration: 'none', pointerEvents: project.link&&!isHidden ? 'auto' : 'none' }}>
+            <img src={project.icon} className={styles.appIcon} style={{ alignSelf: 'flex-start' }} />
+            <div className={styles.auto} style={{ margin: '0 10px' }}>
+              <div className={styles.flex}>
+                <div className={styles.appName}>{project.name}</div>
+                <div className={styles.company}>{project.company}</div>
+              </div>
 
-        <div className={styles.flex} style={{ flexWrap: 'wrap' }}>
+              <div className={styles.flex} style={{ flexWrap: 'wrap' }}>
+                {
+                  project.tags.map(tag => {
+                    return <div className={styles.appTag} key={tag}>{tag}</div>
+                  })
+                }
+              </div>
+            </div>
+            {project.link&&!isHidden ? <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M283.648 174.081l57.225-59.008 399.479 396.929-399.476 396.924-57.228-59.004 335.872-337.92z" fill="#e6e6e6" p-id="4216" /></svg> : null}
+          </a>
+          <div className={styles.divider}></div>
+          <div className={styles.cell} style={{ marginTop: '16px' }}>
+            <div className={styles.textM}>项目时间</div>
+            <div className={`${styles.text}`} style={{ marginLeft: '40px' }}>{project.beigin}—{project.end}</div>
+          </div>
           {
-            project.tags.map(tag => {
-              return <div className={styles.appTag} key={tag}>{tag}</div>
-            })
+            project.description ?
+              <div className={styles.cell} style={{ marginTop: '16px' }}>
+                <div className={styles.textM} style={{ marginTop: '12px' }}>项目介绍</div>
+                <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.description }}></div>
+              </div> : ''
           }
-        </div>
+          {
+            project.technology ?
+              <div className={styles.cell} style={{ marginTop: '16px' }}>
+                <div className={styles.textM} style={{ marginTop: '12px' }}>开发描述</div>
+                <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.technology }}></div>
+              </div> : ''
+          }
       </div>
-      {project.link ? <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M283.648 174.081l57.225-59.008 399.479 396.929-399.476 396.924-57.228-59.004 335.872-337.92z" fill="#e6e6e6" p-id="4216" /></svg> : null}
-    </a>
-    <div className={styles.divider}></div>
-    <div className={styles.cell} style={{ marginTop: '16px' }}>
-      <div className={styles.textM}>项目时间</div>
-      <div className={`${styles.text}`} style={{ marginLeft: '40px' }}>{project.beigin}—{project.end}</div>
     </div>
-    {
-      project.description ?
-        <div className={styles.cell} style={{ marginTop: '16px' }}>
-          <div className={styles.textM} style={{ marginTop: '12px' }}>项目介绍</div>
-          <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.description }}></div>
-        </div> : ''
-    }
-    {
-      project.technology ?
-        <div className={styles.cell} style={{ marginTop: '16px' }}>
-          <div className={styles.textM} style={{ marginTop: '12px' }}>开发描述</div>
-          <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.technology }}></div>
-        </div> : ''
-    }
-
-  </div>
+  )
 }
-
-// function Project({ project, show }) {
-//   return <div className={`${show ? styles.card : styles.hiddenCard} ${styles.project}`}>
-//     <a href={project.link} target='_blank' className={styles.flex} style={{ textDecoration: 'none', pointerEvents: project.link ? 'auto' : 'none' }}>
-//       <img src={project.icon} className={styles.appIcon} style={{ alignSelf: 'flex-start' }} />
-//       <div className={styles.auto} style={{ margin: '0 10px' }}>
-//         <div className={styles.flex}>
-//           <div className={styles.appName}>{project.name}</div>
-//           <div className={styles.company}>{project.company}</div>
-//         </div>
-
-//         <div className={styles.flex} style={{ flexWrap: 'wrap' }}>
-//           {
-//             project.tags.map(tag => {
-//               return <div className={styles.appTag} key={tag}>{tag}</div>
-//             })
-//           }
-//         </div>
-//       </div>
-//       {project.link ? <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M283.648 174.081l57.225-59.008 399.479 396.929-399.476 396.924-57.228-59.004 335.872-337.92z" fill="#e6e6e6" p-id="4216" /></svg> : null}
-//     </a>
-//     <div className={styles.divider}></div>
-//     <div className={styles.cell} style={{ marginTop: '16px' }}>
-//       <div className={styles.textM}>项目时间</div>
-//       <div className={`${styles.text}`} style={{ marginLeft: '40px' }}>{project.beigin}—{project.end}</div>
-//     </div>
-//     {
-//       project.description ?
-//         <div className={styles.cell} style={{ marginTop: '16px' }}>
-//           <div className={styles.textM} style={{ marginTop: '12px' }}>项目介绍</div>
-//           <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.description }}></div>
-//         </div> : ''
-//     }
-//     {
-//       project.technology ?
-//         <div className={styles.cell} style={{ marginTop: '16px' }}>
-//           <div className={styles.textM} style={{ marginTop: '12px' }}>开发描述</div>
-//           <div className={`${styles.text} ${styles.auto} ${styles.card2}`} style={{ marginLeft: '40px' }} dangerouslySetInnerHTML={{ __html: project.technology }}></div>
-//         </div> : ''
-//     }
-
-//   </div>
-// }
 
 const Intro = ({ disabled }) => {
   return (
@@ -369,16 +345,16 @@ const Intro = ({ disabled }) => {
       </div>
 
       <div className={styles.divider}></div>
-        <div className={`${styles.text} ${styles.lineInfo}`}>
-          <span>{resumeData.sex} ，{resumeData.born}，{resumeData.place}
-            ，本科，2016年毕业于
-            <a href={resumeData.universityUrl} target='_blank' className={disabled ? styles.disabledLink : ''}> {resumeData.university} </a>
-            {resumeData.major}专业。
-          </span>
-        </div>
-        <div className={`${styles.text} ${styles.lineInfo}`}>
-          <span>平时爱好{resumeData.hobby}。</span>
-        </div>
+      <div className={`${styles.text} ${styles.lineInfo}`}>
+        <span>{resumeData.sex} ，{resumeData.born}，{resumeData.place}
+          ，本科，2016年毕业于
+          <a href={resumeData.universityUrl} target='_blank' className={disabled ? styles.disabledLink : ''}> {resumeData.university} </a>
+          {resumeData.major}专业。
+        </span>
+      </div>
+      <div className={`${styles.text} ${styles.lineInfo}`}>
+        <span>平时爱好{resumeData.hobby}。</span>
+      </div>
     </div>
   )
 }
@@ -456,12 +432,14 @@ const Contact = () => {
   )
 }
 
-const ProjectItem = ({ project, setProject }) => {
-  const clickItem = () => {
-    setProject(project)
+const ProjectItem = ({ project, selectedProject }) => {
+  const el = useRef(null)
+  const clickItem = (e) => {
+    const rect = el.current.getBoundingClientRect()
+    selectedProject(rect, project)
   }
   return (
-    <div className={`${styles.card} ${styles.projectItem}`} style={{cursor: "pointer"}}>
+    <div ref={el} className={`${styles.card} ${styles.projectItem}`} style={{ cursor: "pointer" }}>
       <a onClick={clickItem} className={styles.flex} style={{ textDecoration: 'none', pointerEvents: 'auto' }}>
         <img src={project.icon} className={styles.appIcon} style={{ alignSelf: 'flex-start' }} />
         <div className={styles.auto} style={{ margin: '0 10px' }}>
@@ -483,14 +461,14 @@ const ProjectItem = ({ project, setProject }) => {
   )
 }
 
-const ProjectsList = ({setProject}) => {
+const ProjectsList = ({ selectedProject }) => {
   return (
     <div className={styles.section}>
       <div className={styles.title2}>项目经历</div>
       <div className={styles.projectsItems}>
         {
           resumeData.projects.map((project) => {
-            return <ProjectItem project={project} key={project.id} setProject={setProject}></ProjectItem>
+            return <ProjectItem project={project} key={project.id} selectedProject={selectedProject}></ProjectItem>
           })
         }
       </div>
@@ -507,42 +485,6 @@ export default function Resume({
 
   const resumeRef = useRef()
   const [disabled, setDisabled] = useState(false)
-  
-  // const [projectsSort, setProjectsSort] = useState(0) // 0默认，1时间近， 2早，
-  // const [projectsType, setProjectsType] = useState(0) // 0默认，1ios， 2web，
-  // const [projectsColumn, setProjectsColumn] = useState(window.innerWidth < 720 ? 1 : 2)
-  // const [showAllProjects, setShowAllProjects] = useState(false)
-  // const projects = useMemo(() => {
-  //   var list
-  //   if (projectsType == 0) {
-  //     list = [...resumeData.projects]
-  //   } else {
-  //     list = resumeData.projects.filter((p) => p.type == projectsType)
-  //   }
-  //   console.log(projectsSort);
-  //   if (projectsSort == 1) {
-  //     list.sort((a, b) => b.sort - a.sort)
-  //     console.log(list);
-  //   } else if (projectsSort == 2) {
-  //     list.sort((a, b) => a.sort - b.sort)
-  //   }
-  //   if (projectsColumn == 1) {
-  //     return [list]
-  //   }
-  //   const res = [[], []]
-  //   list.forEach((element, i) => {
-  //     res[i % 2].push(element)
-  //   });
-  //   return res
-  // }, [projectsColumn, projectsSort, projectsType])
-
-  // const projectsSortChange = (e) => {
-  //   setProjectsSort(parseInt(e.target.value))
-  // }
-
-  // const projectsTypeChange = (e) => {
-  //   setProjectsType(parseInt(e.target.value))
-  // }
 
   const showContent = useCallback(() => {
     if (show) {
@@ -573,22 +515,6 @@ export default function Resume({
     }
   }
 
-  const onWindowResize = () => {
-    if (window.innerWidth < 720) {
-      setProjectsColumn(1)
-    } else {
-      setProjectsColumn(2)
-    }
-  }
-
-  useEffect(() => {
-    resumeRef.current.scrollTop = 100
-    window.addEventListener('resize', onWindowResize)
-    return () => {
-      window.removeEventListener('resize', onWindowResize)
-    }
-  }, [])
-
   useEffect(() => {
     if (show) {
       resumeRef.current.addEventListener('scroll', onScroll)
@@ -608,70 +534,45 @@ export default function Resume({
     }
   }, [show])
 
-  const [project, setProject] = useState(null)
+  useEffect(() => {
+    resumeRef.current.scrollTop = 100
+  }, [])
+
+  const [project, setProject] = useState(resumeData.projects[0])
+
+  const [isHiddenProjectDetail, setIsHiddenProjectDetail] = useState(true)
+
+  const [projectItemRect, setProjectItemRect] = useState({left: 0, top: 0, width: 0, height: 0})
+
+  const hideenProject = () => {
+    setIsHiddenProjectDetail(true)
+  }
+
+  const showProjectDetail = (rect, p) => {
+    setProjectItemRect(rect)
+    setProject(p)
+    setIsHiddenProjectDetail(false)
+  }
 
   return (
-    <div className={`${styles.container} ${disabled ? styles.disabledContainer : ''} ${show ? '' : styles.hideContainer}`} id='resume' ref={resumeRef}>
-      <div className={styles.topSpace}></div>
-      <div onClick={disabled && show ? showContent : null} className={`${styles.content} ${disabled ? styles.disabledContent : ''}`}>
+    <>
+      <div className={`${styles.container} ${disabled ? styles.disabledContainer : ''} ${show ? '' : styles.hideContainer}`} id='resume' ref={resumeRef}>
+        <div className={styles.topSpace}></div>
+        <div onClick={disabled && show ? showContent : null} className={`${styles.content} ${disabled ? styles.disabledContent : ''}`}>
 
-        <Intro disabled={disabled}></Intro>
+          <Intro disabled={disabled}></Intro>
 
-        <Skill></Skill>
+          <Skill></Skill>
 
-        <Experience disabled={disabled}></Experience>
+          <Experience disabled={disabled}></Experience>
 
+          <ProjectsList selectedProject={showProjectDetail}></ProjectsList>
 
-        {/* <div className={styles.section}>
-          <div className={styles.flex}>
-            <div className={`${styles.title2} ${styles.auto}`}>项目经历</div>
-            <div>
-              <select id="sort" onChange={projectsSortChange}>
-                <option value="0">默认</option>
-                <option value="1">最近</option>
-                <option value="2">最早</option>
-              </select>
-            </div>
-            <div>
-              <select id="type" onChange={projectsTypeChange}>
-                <option value="0">全部</option>
-                <option value="1">iOS</option>
-                <option value="2">前端</option>
-              </select>
-            </div>
-          </div>
-
-          <div className={styles.projects}>
-            {
-              projects.map((list, column) => {
-                return <div className={styles.projectsColumn} key={"projects" + column}>
-                  {
-                    list.map((project, i) => {
-                      return <Project project={project} show={showAllProjects ? true : i < (6 / projectsColumn)} key={"project" + project.id} />
-                    })
-                  }
-                </div>
-              })
-            }
-  
-          </div>
-          {
-            projectsType != 1 ?
-              <div className={styles.projectsSwitch} onClick={() => { setShowAllProjects(!showAllProjects) }}>{showAllProjects ? '收起' : '显示全部'}</div>
-              : ""
-          }
-
-        </div> */}
-
-        <ProjectsList setProject={setProject}></ProjectsList>
-
-        <Contact></Contact>
-
-        {
-          project ? <div>{project.name}{project.id}</div> : ""
-        }
-
+          <Contact></Contact>
+        </div>
       </div>
-    </div>
+
+      <ProjectDetail project={project} isHidden={isHiddenProjectDetail} hideenProject={hideenProject} rect={projectItemRect} ></ProjectDetail>
+    </>
   )
 }

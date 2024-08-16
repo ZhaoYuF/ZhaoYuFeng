@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef, forwardRef, useImperativeHandle } from 'react'
 import { Box, Plane, RoundedBox, shaderMaterial } from '@react-three/drei'
-import { extend, useFrame, useThree } from "@react-three/fiber";
+import { extend, useFrame } from "@react-three/fiber";
 import * as THREE from 'three';
 import { rows, cols, height, chessList, createPieces, cubePositionsWithPieces, turnChess, downPieces, eventData, moveChess, settlement, moveDownCubeList } from './Pieces.js'
 import Bomb from './Bomb.jsx';
@@ -349,15 +349,6 @@ export default forwardRef(function Tetris({
         }
     };
 
-
-
-
-    // const onResumeScroll = () => {
-    //     console.log(resume.scrollTop);
-    //     console.log(camera);
-
-    // }
-
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);
         document.addEventListener('keyup', handleKeyUp);
@@ -405,8 +396,8 @@ export default forwardRef(function Tetris({
                             return row.map((item, z) => {
                                 if (item && item.valid) {
                                     return (
-                                        <RoundedBox radius={0.1} creaseAngle={1.0} smoothness={1} bevelSegments={1} key={`${x}-${y}-${z}`} args={[1, 1, 1]} position={[x, y, z]} receiveShadow={false}>
-                                            <meshStandardMaterial color={item.color} />
+                                        <RoundedBox radius={0.1} creaseAngle={1.0} smoothness={1} bevelSegments={1} key={`${x}-${y}-${z}`} args={[1, 1, 1]} position={[x, y, z]} receiveShadow={true}>
+                                            <meshLambertMaterial color={item.color} />
                                         </RoundedBox>
                                     )
                                 }
@@ -417,8 +408,8 @@ export default forwardRef(function Tetris({
                 {
                     currentCube.positions.map(p => {
                         return (
-                            <RoundedBox radius={0.1} creaseAngle={1.0} smoothness={1} bevelSegments={1} key={`${p[0]}-${p[1]}-${p[2]}`} args={[1, 1, 1]} position={p} castShadow={false}>
-                                <meshStandardMaterial color={currentCube.color} />
+                            <RoundedBox radius={0.1} creaseAngle={1.0} smoothness={0.2} bevelSegments={1} key={`${p[0]}-${p[1]}-${p[2]}`} args={[1, 1, 1]} position={p} castShadow={true}>
+                                <meshLambertMaterial color={currentCube.color} />
                             </RoundedBox>
                         )
                     })
@@ -427,7 +418,7 @@ export default forwardRef(function Tetris({
                     nextCube.positions.map(p => {
                         return (
                             <RoundedBox radius={0.1} creaseAngle={1.0} smoothness={1} bevelSegments={1} key={`${p[0]}-${p[1]}-${p[2]}`} args={[1, 1, 1]} position={p}>
-                                <meshStandardMaterial color={nextCube.color} />
+                                <meshLambertMaterial color={nextCube.color} />
                             </RoundedBox>
                         )
                     })
@@ -435,7 +426,7 @@ export default forwardRef(function Tetris({
             </group>
             <group>
                 {/* 阴影 */}
-                <Plane args={[cols, rows]} receiveShadow={false} rotation-x={-Math.PI * 0.5} position-y={0.11} >
+                <Plane args={[cols, rows]} receiveShadow={true} rotation-x={-Math.PI * 0.5} position-y={0.11} >
                     <shadowMaterial opacity={0.7} />
                 </Plane>
                 {/* 底 */}
@@ -466,17 +457,6 @@ export default forwardRef(function Tetris({
                     }
                     )
                 }
-
-                {/* <Bomb position={[0, 0, 8]} color="#00ff00" />
-                    <Bomb position={[1, 0, 8]} color="#00ff00" />
-                    <Bomb position={[2, 0, 8]} color="#00ff00" />
-                    <Bomb position={[3, 0, 8]} color="#00ff00" />
-                    <Bomb position={[4, 0, 8]} color="#00ff00" />
-                    <Bomb position={[5, 0, 8]} color="#00ff00" />
-                    <Bomb position={[6, 0, 8]} color="#00ff00" />
-                    <Bomb position={[7, 0, 8]} color="#00ff00" />
-                    <Bomb position={[8, 0, 8]} color="#00ff00" />
-                    <Bomb position={[9, 0, 8]} color="#00ff00" /> */}
             </group>
         </group>
     )

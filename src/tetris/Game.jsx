@@ -14,22 +14,23 @@ const GameCanvas = ({
 }) => {
     return <Canvas
         // flat
-        // shadows
+        shadows='basic'
         // dpr={2}
         gl={{
-            antialias: false
+            antialias: false,
             // toneMapping: THREE.LinearToneMapping,
             // outputColorSpace: THREE.LinearSRGBColorSpace
         }}
-        camera={{ position: [0, -2, 20] }}
+        camera={{ position: [0, -2, 20] ,  fov: 75, near: 5, far: 70}}
         style={{ height: '100%' }}
         id="canvas"
+        // frameloop='demand'
     >
         {/* <Sky sunPosition={[10, 10, 10]} />  ={gameState == 1} */}
         <CameraControls dollySpeed={0} onEnd={(e) => { e.target.reset(true) }} />
         <group rotation-x={0.15}>
-            {/* <directionalLight position={[0, 20, 0]} intensity={1.8} castShadow={false} /> */}
-            {/* <directionalLight position={[5, 5, 10]} intensity={0.5} /> */}
+            <directionalLight position={[0, 20, 0]} intensity={1.0} castShadow={true} />
+            <directionalLight position={[5, 5, 10]} intensity={0.5} />
             <ambientLight intensity={0.8} />
             <Tetris onScore={(s) => { setScore(s) }} ref={tetris} gameState={gameState} onChangeGameState={onChangeGameState} disabled={disabled} />
         </group>

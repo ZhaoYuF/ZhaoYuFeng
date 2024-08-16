@@ -54,8 +54,9 @@
 .section {
     padding: 16px;
     margin: 24px;
-    background-color: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(30px);
+    background-color: rgba(20, 20, 20, 0.2);
+    /* backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px); */
 }
 
 .card {
@@ -201,6 +202,7 @@ a:active {
     /* margin-top: 4px; */
     font-size: 16px;
     font-weight: 600;
+    color: #ffffff;
 }
 
 .company {
@@ -251,10 +253,59 @@ a:active {
     margin-left: 12px;
 }
 
+.projectDetail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;    
+    
+}
 
-.project {
-    transition: all 0.5s ease;
+.projectDetailShow {
+    z-index: 2;
+    background-color: rgba(8, 16, 10, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    pointer-events: all;
+    transition: background-color 0.25s linear 0.05s, backdrop-filter 0.25s linear 0.05;
+    /* opacity: 0.1; */
+}
+
+.projectDetailHidden {
+    z-index: 2;
+    background-color: rgba(8, 16, 10, 0.0);
+    /* backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px); */
+    pointer-events: none;
+    transition: background-color 0.25s linear 0.05s, backdrop-filter 0.25s linear 0.25s;
+}
+
+.projectContent {
     box-sizing: border-box;
+    position: absolute;
+    overflow: scroll;
+    margin: 0 !important;
+    transform: translate(-50%, -50%);
+}
+
+.projectContentShow {
+    opacity: 1;
+    width: 80%;
+    max-height: 80%;
+    transition: max-height 0.25s ease-out, background-color 0.25s ease-out;
+    pointer-events: all;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(8, 16, 10, 0.6);
+}
+
+.projectContentHidden {
+    opacity: 0;
+    transition: background-color 0.35s ease-out, max-height 0.35s ease-out, width 0.35s ease-out, left 0.35s ease-out, top 0.35s ease-out, opacity 0.01s linear 0.35s;
+    pointer-events: none;
+    background-color: rgba(8, 16, 10, 0.1);
 }
 
 .hiddenCard {
