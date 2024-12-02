@@ -59,6 +59,14 @@
     -webkit-backdrop-filter: blur(30px); */
 }
 
+.section2 {
+    padding: 16px 0;
+    margin: 24px;
+    /* background-color: rgba(20, 20, 20, 0); */
+    /* backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px); */
+}
+
 .card {
     background-color: rgba(0, 0, 0, 0.2);
     padding: 12px;
@@ -117,10 +125,19 @@
     margin: 16px 0;
 }
 
-.title1 {
+.title0 {
     font-weight: 400;
     font-size: 28px;
     letter-spacing: 2px;
+    text-wrap: nowrap;
+}
+
+.title1 {
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: #f5f5f5;
     text-wrap: nowrap;
 }
 

@@ -338,7 +338,7 @@ const Intro = ({ disabled }) => {
   return (
     <div className={styles.section}>
       <div className={styles.flex}>
-        <div className={styles.title1} style={{ marginRight: '12px' }}>{resumeData.name}</div>
+        <div className={styles.title0} style={{ marginRight: '12px' }}>{resumeData.name}</div>
         <div className={styles.profession}>{resumeData.profession}</div>
         <div className={styles.profession}>·</div>
         <div className={styles.profession}>{resumeData.years}年</div>
@@ -363,10 +363,10 @@ const Skill = () => {
   return (
     <div className={styles.section}>
       <div className={styles.title2}>技能</div>
-      <div className={`${styles.text} ${styles.lineInfo}`}>可独立开发iOS项目，熟悉Objective-C、Swift，了解多线程、内存管理、runtime、SwiftUI等</div>
+      <div className={`${styles.text} ${styles.lineInfo}`}>可独立开发iOS项目，熟悉Objective-C、Swift、SwiftUI，了解多线程、concurrency、内存管理、Core Data、runtime等</div>
       <div className={`${styles.text} ${styles.lineInfo}`}>会开发小程序和H5，熟悉JavaScript、TypeScript，了解Vue、React。</div>
-      <div className={`${styles.text} ${styles.lineInfo}`}>了解一些常用的三方库的使用，如AFNetworking、SDWebImage、Alamofire、SwiftyJSON、ElementUI、Vant等。</div>
-      <div className={`${styles.text} ${styles.lineInfo}`}>了解点3D开发，如SceneKit、ARKit、Three.js等。</div>
+      <div className={`${styles.text} ${styles.lineInfo}`}>熟悉一些常用的三方库的使用，如AFNetworking、SDWebImage、Alamofire、SwiftyJSON、SwiftUI-Introspect、ElementUI、Vant等。</div>
+      <div className={`${styles.text} ${styles.lineInfo}`}>了解3D开发，如SceneKit、ARKit、Three.js等。</div>
     </div>
   )
 }
@@ -402,8 +402,8 @@ const Company = ({ disabled, item }) => {
 
 const Experience = ({ disabled }) => {
   return (
-    <div className={styles.section}>
-      <div className={styles.title2}>工作经历</div>
+    <div className={styles.section2}>
+      <div className={styles.title1}>工作经历</div>
       <Company disabled={disabled} item={resumeData.experience[0]}></Company>
       <Company disabled={false} item={resumeData.experience[1]}></Company>
     </div>
@@ -463,8 +463,8 @@ const ProjectItem = ({ project, selectedProject }) => {
 
 const ProjectsList = ({ selectedProject }) => {
   return (
-    <div className={styles.section}>
-      <div className={styles.title2}>项目经历</div>
+    <div className={styles.section2}>
+      <div className={styles.title1}>项目经历</div>
       <div className={styles.projectsItems}>
         {
           resumeData.projects.map((project) => {
