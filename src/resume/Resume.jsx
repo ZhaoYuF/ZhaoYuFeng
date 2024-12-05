@@ -439,7 +439,7 @@ const ProjectItem = ({ project, selectedProject }) => {
     selectedProject(rect, project)
   }
   return (
-    <div ref={el} className={`${styles.card} ${styles.projectItem}`} style={{ cursor: "pointer" }}>
+    <div ref={el} className={`${styles.card} ${styles.projectItem}`} style={{ cursor: "pointer"}}>
       <a onClick={clickItem} className={styles.flex} style={{ textDecoration: 'none', pointerEvents: 'auto' }}>
         <img src={project.icon} className={styles.appIcon} style={{ alignSelf: 'flex-start' }} />
         <div className={styles.auto} style={{ margin: '0 10px' }}>

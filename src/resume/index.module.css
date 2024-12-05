@@ -93,6 +93,14 @@
     margin: 0 8px 8px 0;
     /* font-size: 13px;
     color: #fff; */
+    transition: scale 0.35s ease-out, box-shadow 0.2s ease-out;
+}
+
+.card3:hover {
+    /* opacity: 1.0 !important; */
+    scale: 1.05;
+    box-shadow: rgba(110, 100, 100, 0.4) 0 0 8px 1px;
+    
 }
 
 .cell {
@@ -252,6 +260,13 @@ a:active {
 .projectItem {
     margin-top: 6px;
     margin: 6px !important;
+    transition: scale 0.35s ease-out, box-shadow 0.2s ease-out;
+}
+
+.projectItem:hover {
+    /* opacity: 1.0 !important; */
+    scale: 1.05;
+    box-shadow: rgba(110, 100, 100, 0.4) 0 0 8px 1px;
 }
 
 .projects {
@@ -286,7 +301,7 @@ a:active {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     pointer-events: all;
-    transition: background-color 0.25s linear 0.05s, backdrop-filter 0.25s linear 0.05;
+    transition: background-color 0.25s linear 0.05s, backdrop-filter 0.25s linear 0.05s;
     /* opacity: 0.1; */
 }
 
@@ -296,7 +311,7 @@ a:active {
     /* backdrop-filter: blur(0px);
     -webkit-backdrop-filter: blur(0px); */
     pointer-events: none;
-    transition: background-color 0.25s linear 0.05s, backdrop-filter 0.25s linear 0.25s;
+    transition: background-color 0.55s linear, backdrop-filter 0.35s linear;
 }
 
 .projectContent {
@@ -311,7 +326,7 @@ a:active {
     opacity: 1;
     width: 80%;
     max-height: 80%;
-    transition: max-height 0.25s ease-out, background-color 0.25s ease-out;
+    transition: max-height 0.45s ease-out, background-color 0.25s ease-out;
     pointer-events: all;
     top: 50%;
     left: 50%;
