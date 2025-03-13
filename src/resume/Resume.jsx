@@ -48,7 +48,7 @@ const resumeData = {
       sort: '202308',
       type: '1',
       icon: '/app1.webp',
-      tags: ['iOS', 'Swift'],
+      tags: ['iOS', 'Swift', 'Objective-C'],
       link: 'https://apps.apple.com/cn/app/id1274907625',
       description: '公司主要运营的一款旅游App。\n1.通过地图上的自定义瓦片，给热门景区添加了手绘地图；\n2.给游客提供景区的游览线路和需付费的语音讲解功能；\n3.用户可录制游览线路进行上传；\n4.旅游攻略、电台等其他功能。',
       technology: '语言：最初使用OC开发，在2021年用Swift重构项目；\n使用库：Alamofire、SwiftJSON、SDWebImage等；\n技术模块：Storyboard布局、支付、音频、地图、CoreData、多线程等；',
@@ -178,6 +178,7 @@ const resumeData = {
       link: '/miniprogram/8.jpg',
       description: '钱塘区的一个低碳的小程序项目。\n主要功能：\n1.上传记录低碳的生活方式，可获取积分，积分可在商城抵扣；\n2.类似美团优选的商城模块；\n3.组团建群游玩；\n4.寻宝等等。',
     },
+    /*
     {
       id: '11',
       name: '智游凤凰',
@@ -269,6 +270,7 @@ const resumeData = {
       link: '/miniprogram/16.jpg',
       description: '绍兴上虞区导览小程序',
     },
+    */
   ]
 }
 
